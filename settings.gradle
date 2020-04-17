@@ -1,2 +1,5 @@
 rootProject.name='example-android-java-boilerplate'
 include ':app'
+include ':binder'
+include ':binder-annotations'
+include ':binder-compiler'
