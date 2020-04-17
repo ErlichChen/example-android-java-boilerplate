@@ -1,0 +1,2 @@
+rootProject.name='example-android-java-boilerplate'
+include ':app'
