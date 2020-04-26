@@ -38,6 +38,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
+    implementation deps.room.runtime
+    annotationProcessor deps.room.compiler
+
     implementation project(path: ':binder')
     annotationProcessor project(':binder-compiler')
 

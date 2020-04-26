@@ -1,7 +1,8 @@
-package com.example.java;
+package com.example.java.ui.main;
 
 import android.os.Bundle;
 
+import com.example.java.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

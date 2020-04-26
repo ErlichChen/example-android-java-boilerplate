@@ -1,6 +1,20 @@
 ext.deps = [:]
 
 def versions = [:]
-
+versions.room = '2.2.3'
 ext.versions = versions
+
+def deps = [:]
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+deps.room = room;
+
+ext.deps = deps
+
+
+
 
