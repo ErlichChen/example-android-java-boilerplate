@@ -1,6 +1,7 @@
 package com.example.java.ui.welcome;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import com.example.java.R;
 import com.example.java.db.repo.UserRepo;
 import com.example.java.ui.login.LoginActivity;
 import com.example.java.ui.main.MainActivity;
+import com.example.java.BuildConfig;
 
 import java.lang.ref.WeakReference;
 
@@ -23,6 +25,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private static final int GOTO_LOGIN = 100;
     private static final int GOTO_MAIN = 200;
     private static final int DURATION = 2000;
+
+    private int versioncode = BuildConfig.VERSION_CODE;
+    private String versionname = BuildConfig.VERSION_NAME;
 
     private final MyHandler mHandler = new MyHandler(this);
 
