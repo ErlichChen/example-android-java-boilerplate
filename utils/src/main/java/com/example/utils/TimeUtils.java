@@ -1,4 +1,4 @@
-package com.example.java.utils;
+package com.example.utils;
 
 /**
  * yyyy: year
