@@ -8,7 +8,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-public class BleManager extends Service implements BleConnection.BleConnectionCallback {
+public class BleManager implements BleConnection.BleConnectionCallback {
 
     private BluetoothGattServer server;
 
@@ -16,20 +16,21 @@ public class BleManager extends Service implements BleConnection.BleConnectionCa
         super();
     }
 
-    @Override
-    public void onDeviceConnected(BluetoothDevice device, int connectionState) {
+    private static BleManager sInstance;
 
+    public static BleManager getInstance() {
+        if (sInstance == null) {
+            synchronized (BleManager.class) {
+                if (sInstance == null) {
+                    sInstance = new BleManager();
+                }
+            }
+        }
+        return sInstance;
     }
 
-    @Override
-    public void onDeviceDisconnected(BluetoothDevice device, int connectionState) {
+    public void scan(BleScanner.BleScanCallback callback) {
 
-    }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
     }
 
     public void connect() {

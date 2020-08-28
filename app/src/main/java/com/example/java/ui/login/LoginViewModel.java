@@ -31,7 +31,7 @@ public class LoginViewModel extends ViewModel {
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new LoginViewModel(mApp);
+            return (T) new LoginViewModel(UserRepo.getInstance(mApp.getApplicationContext()));
         }
     }
 }

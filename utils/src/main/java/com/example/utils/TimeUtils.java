@@ -107,46 +107,46 @@ public class TimeUtils {
 //    }
 
 
-    public void delay1(long millis, Handler handler, Message msg) {
-        new Thread(() -> {
-            try {
-                Thread.sleep(millis);
-                handler.sendMessage(msg);
-            } catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
+//    public void delay1(long millis, Handler handler, Message msg) {
+//        new Thread(() -> {
+//            try {
+//                Thread.sleep(millis);
+//                handler.sendMessage(msg);
+//            } catch(InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }).start();
+//    }
 
-    public void delay2(long millis, Handler handler, Message msg) {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                handler.sendMessage(msg);
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(task, millis);
-    }
+//    public void delay2(long millis, Handler handler, Message msg) {
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.sendMessage(msg);
+//            }
+//        };
+//        Timer timer = new Timer();
+//        timer.schedule(task, millis);
+//    }
 
-    public void delay3(long millis, Handler handler, Message msg) {
-        new Handler().postDelayed(() -> {
-            handler.sendMessage(msg);
-        }, millis);
-    }
+//    public void delay3(long millis, Handler handler, Message msg) {
+//        new Handler().postDelayed(() -> {
+//            handler.sendMessage(msg);
+//        }, millis);
+//    }
 
-    public void delay4(long millis, Handler handler, Message msg) {
-        new CountDownTimer(millis, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                handler.sendMessage(msg);
-            }
-
-            @Override
-            public void onFinish() {
-                Log.i("", "onFinish");
-            }
-        }.start();
-    }
+//    public void delay4(long millis, Handler handler, Message msg) {
+//        new CountDownTimer(millis, 1000) {
+//
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                handler.sendMessage(msg);
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                Log.i("", "onFinish");
+//            }
+//        }.start();
+//    }
 }

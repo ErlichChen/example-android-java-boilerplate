@@ -39,11 +39,6 @@ class BleConnection extends BluetoothGattCallback {
         this.mCharacteristicMap  = new HashMap<>();
     }
 
-    public interface BleConnectionCallback {
-        void onDeviceConnected(BluetoothDevice device, int connectionState);
-        void onDeviceDisconnected(BluetoothDevice device, int connectionState);
-    }
-
     private void connect(final BluetoothDevice device) {
         mBluetoothGatt = device.connectGatt(mContext, false, this);
     }
@@ -167,5 +162,10 @@ class BleConnection extends BluetoothGattCallback {
             this.data = null;
             this.writeType = 0;
         }
+    }
+
+    public interface BleConnectionCallback {
+        void onDeviceConnected(BluetoothDevice device, int connectionState);
+        void onDeviceDisconnected(BluetoothDevice device, int connectionState);
     }
 }
