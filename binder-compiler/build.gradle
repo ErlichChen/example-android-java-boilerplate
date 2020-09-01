@@ -6,6 +6,9 @@ targetCompatibility = JavaVersion.VERSION_1_8
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':binder-annotations')
+
+    // import tools.jar
+    compileOnly files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 }
 
 
