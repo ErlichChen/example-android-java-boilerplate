@@ -4,7 +4,9 @@ import java.util.Locale;
 
 public class NumUtils {
 
-    private static NumUtils sInstance;
+    private static final String TAG = NumUtils.class.getSimpleName();
+
+    private static volatile NumUtils sInstance;
 
     public static NumUtils getInstance() {
         if (sInstance == null) {

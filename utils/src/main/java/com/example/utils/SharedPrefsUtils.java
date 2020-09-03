@@ -2,7 +2,7 @@ package com.example.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.text.TextUtils;
 
 public class SharedPrefsUtils {
