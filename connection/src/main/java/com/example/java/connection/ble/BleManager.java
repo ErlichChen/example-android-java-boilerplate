@@ -40,4 +40,14 @@ public class BleManager implements BleConnection.BleConnectionCallback {
     public void disconnect() {
 
     }
+
+    @Override
+    public void onDeviceConnected(BluetoothDevice device, int connectionState) {
+
+    }
+
+    @Override
+    public void onDeviceDisconnected(BluetoothDevice device, int connectionState) {
+
+    }
 }

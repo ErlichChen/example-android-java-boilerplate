@@ -2,6 +2,8 @@ package com.example.java.binder.compiler;
 
 import com.example.java.binder.annotations.BindView;
 import com.example.java.binder.annotations.OnClick;
+import com.sun.source.util.Trees;
+import com.sun.tools.javac.tree.JCTree;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -31,7 +33,6 @@ public class AnnotationsProcessor extends AbstractProcessor {
         Set<String> types = new LinkedHashSet<>();
         types.add(BindView.class.getCanonicalName());
         types.add(OnClick.class.getCanonicalName());
-        messager.printMessage(Diagnostic.Kind.NOTE, "getSupportedAnnotationTypes ---> ");
         return types;
     }
 
@@ -43,6 +44,10 @@ public class AnnotationsProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment env) {
         messager.printMessage(Diagnostic.Kind.NOTE, "process ---> ");
+        messager.printMessage(Diagnostic.Kind.NOTE, env.toString());
+
+        findAndParseTargets(env);
+
         for (Element element : env.getElementsAnnotatedWith(BindView.class)) {
             messager.printMessage(Diagnostic.Kind.NOTE, element.getSimpleName());
         }
@@ -50,5 +55,35 @@ public class AnnotationsProcessor extends AbstractProcessor {
             messager.printMessage(Diagnostic.Kind.NOTE, element.getSimpleName());
         }
         return false;
+    }
+
+    private void findAndParseTargets(RoundEnvironment env) {
+        for (Element element : env.getElementsAnnotatedWith(BindView.class)) {
+            messager.printMessage(Diagnostic.Kind.NOTE, "findAndParseTargets: " + element.toString());
+//            if (!SuperficialValidation.validateElement(element)) continue;
+//            try {
+//                parseResourceString(element, builderMap, erasedTargetNames);
+//            } catch (Exception e) {
+//                logParsingError(element, BindString.class, e);
+//            }
+            try {
+                parseBindView(element);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+//                logParsingError(element, BindView.class, e);
+            }
+        }
+    }
+
+    private Trees trees;
+    private void parseBindView(Element element) {
+        String name = element.getSimpleName().toString();
+        int id = element.getAnnotation(BindView.class).value();
+        messager.printMessage(Diagnostic.Kind.NOTE, "parseBindView --> name: " + name);
+        messager.printMessage(Diagnostic.Kind.NOTE, "parseBindView --> id: " + id);
+//        Id resourceId = elementToId(element, BindView.class, id);
+        JCTree tree = (JCTree) trees.getTree(element);
+        messager.printMessage(Diagnostic.Kind.NOTE, "parseBindView --> " + tree.toString());
+
     }
 }
