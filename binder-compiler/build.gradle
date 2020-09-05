@@ -6,6 +6,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':binder-annotations')
+    implementation 'com.squareup:javapoet:1.10.0'
 
     // import tools.jar
     compileOnly files(org.gradle.internal.jvm.Jvm.current().getToolsJar())

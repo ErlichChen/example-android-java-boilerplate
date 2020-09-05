@@ -7,6 +7,7 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.java.binder.Binder;
 import com.example.java.binder.annotations.BindView;
 import com.example.java.binder.annotations.OnClick;
 
@@ -26,5 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Binder.bind(this);
+        et_username.setText("123123123");
     }
 }

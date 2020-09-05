@@ -20,7 +20,7 @@ public class Share {
 
         private Builder() { }
 
-        private Builder(@NonNull Context context) {
+        public Builder(@NonNull Context context) {
 
         }
 
@@ -47,7 +47,7 @@ public class Share {
 
         public Share create(@NonNull Context context) {
             final Share share = new Share();
-            return new Builder(context);
+            return share;
         }
 
     }

@@ -20,7 +20,7 @@ import com.example.java.binder.annotations.OnClick;
 public class HomeFragment extends Fragment {
 
     @BindView(R.id.text_home)
-    private TextView textView;
+    TextView textView;
 
     private HomeViewModel homeViewModel;
 
