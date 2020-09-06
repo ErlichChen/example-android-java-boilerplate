@@ -1,18 +1,13 @@
 package com.example.java.ui.welcome;
 
 import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Window;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.java.R;
+import com.example.java.base.BaseActivity;
 import com.example.java.db.repo.UserRepo;
 import com.example.java.ui.login.LoginActivity;
 import com.example.java.ui.main.MainActivity;
@@ -20,7 +15,7 @@ import com.example.java.BuildConfig;
 
 import java.lang.ref.WeakReference;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     private static final int GOTO_LOGIN = 100;
     private static final int GOTO_MAIN = 200;
@@ -34,11 +29,12 @@ public class WelcomeActivity extends AppCompatActivity {
     private WelcomeViewModel viewModel;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_welcome);
+    protected int getLayoutId() {
+        return R.layout.activity_welcome;
+    }
 
+    @Override
+    protected void init() {
         viewModel = new WelcomeViewModel(getApplication(), UserRepo.getInstance(this));
 
         viewModel.getUsers().observe(this, UserEntities -> {
@@ -48,7 +44,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 mHandler.sendEmptyMessageDelayed(GOTO_LOGIN, DURATION);
             }
         });
-
     }
 
     private static class MyHandler extends Handler {

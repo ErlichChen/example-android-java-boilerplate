@@ -1,11 +1,5 @@
 package com.example.java.ui.settings;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,24 +8,32 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.java.R;
+import com.example.java.base.BaseActivity;
+import com.example.java.base.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends BaseFragment {
 
     private SettingsViewModel settingsViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_settings;
+    }
+
+    @Override
+    protected void init() {
         settingsViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity(), getActivity().getSupportFragmentManager());
 
-        View root = inflater.inflate(R.layout.fragment_settings, container, false);
+//        View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        ViewPager viewPager = root.findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-
-        TabLayout tabs = root.findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+//        ViewPager viewPager = root.findViewById(R.id.view_pager);
+//        viewPager.setAdapter(sectionsPagerAdapter);
+//
+//        TabLayout tabs = root.findViewById(R.id.tabs);
+//        tabs.setupWithViewPager(viewPager);
 
 
 //        final TextView textView = root.findViewById(R.id.text_settings);
@@ -41,6 +43,6 @@ public class SettingsFragment extends Fragment {
 //                textView.setText(s);
             }
         });
-        return root;
     }
+
 }
