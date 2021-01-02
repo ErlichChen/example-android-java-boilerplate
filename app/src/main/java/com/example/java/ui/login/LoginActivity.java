@@ -31,7 +31,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        et_username.setText("123123123");
+        et_username.setText("admin");
     }
 
 }

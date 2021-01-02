@@ -34,13 +34,11 @@ public class AnnotationsProcessor extends AbstractProcessor {
     private Map<Element, List<Element>> elementsMap = new LinkedHashMap<>();
 
     private Filer mFiler;
-    private Messager messager;
     private Elements mElementUtils;
 
     @Override
     public synchronized void init(ProcessingEnvironment env) {
         super.init(env);
-        messager = env.getMessager();
         mFiler = env.getFiler();
         mElementUtils = env.getElementUtils();
     }
@@ -61,7 +59,6 @@ public class AnnotationsProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment env) {
         for (Element element : env.getElementsAnnotatedWith(BindView.class)) {
-            messager.printMessage(Diagnostic.Kind.NOTE, element.getSimpleName());
             Element enclosingElement = element.getEnclosingElement();
 
             List<Element> viewBindElements = elementsMap.get(enclosingElement);
@@ -72,43 +69,22 @@ public class AnnotationsProcessor extends AbstractProcessor {
 
             viewBindElements.add(element);
         }
-//        findAndParseTargets(env);
-//        for (Element element : env.getElementsAnnotatedWith(OnClick.class)) {
-//            messager.printMessage(Diagnostic.Kind.NOTE, element.getSimpleName());
-//        }
+
+
         generate();
         return false;
     }
 
-    private void findAndParseTargets(RoundEnvironment env) {
-        for (Element element : env.getElementsAnnotatedWith(BindView.class)) {
-//            messager.printMessage(Diagnostic.Kind.NOTE, "findAndParseTargets: " + element.toString());
-//            if (!SuperficialValidation.validateElement(element)) continue;
-//            try {
-//                parseResourceString(element, builderMap, erasedTargetNames);
-//            } catch (Exception e) {
-//                logParsingError(element, BindString.class, e);
-//            }
-            try {
-                parseBindView(element);
-            } catch (Exception e) {
-                System.out.println(e.toString());
-//                logParsingError(element, BindView.class, e);
-            }
+    private void parseTargets(RoundEnvironment env) {
+        for (Element element: env.getElementsAnnotatedWith(BindView.class)) {
+
+        }
+
+        for (Element element: env.getElementsAnnotatedWith(OnClick.class)) {
+            
         }
     }
 
-    private Trees trees;
-    private void parseBindView(Element element) {
-        String name = element.getSimpleName().toString();
-        int id = element.getAnnotation(BindView.class).value();
-        messager.printMessage(Diagnostic.Kind.NOTE, "parseBindView --> name: " + name);
-        messager.printMessage(Diagnostic.Kind.NOTE, "parseBindView --> id: " + id);
-//        Id resourceId = elementToId(element, BindView.class, id);
-        JCTree tree = (JCTree) trees.getTree(element);
-        messager.printMessage(Diagnostic.Kind.NOTE, "parseBindView --> " + tree.toString());
-
-    }
 
     private void generate() {
         for (Map.Entry<Element,List<Element>> entry : elementsMap.entrySet()) {
@@ -138,8 +114,7 @@ public class AnnotationsProcessor extends AbstractProcessor {
                     .addModifiers(Modifier.FINAL, Modifier.PUBLIC);
 
             //添加构造函数
-            MethodSpec.Builder constructMethodBuilder = MethodSpec.constructorBuilder()
-                    .addParameter(activityClassName,"target");
+            MethodSpec.Builder constructMethodBuilder = MethodSpec.constructorBuilder().addParameter(activityClassName,"target");
             constructMethodBuilder.addStatement("this.target = target");
             for (Element bindViewElement : bindViewElements) {
                 String fieldName = bindViewElement.getSimpleName().toString();

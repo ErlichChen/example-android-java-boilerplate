@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeActivity">
+
+    <activity
+        android:id="@+id/welcomeActivity"
+        android:name="com.example.java.ui.welcome.WelcomeActivity"
+        android:label="activity_welcome"
+        tools:layout="@layout/activity_welcome"/>
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.java.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.java.ui.main.MainActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/activity_main"/>
+
+</navigation>

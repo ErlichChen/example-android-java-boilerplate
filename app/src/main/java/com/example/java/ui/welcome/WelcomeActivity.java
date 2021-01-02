@@ -15,6 +15,7 @@ import com.example.java.BuildConfig;
 
 import java.lang.ref.WeakReference;
 
+
 public class WelcomeActivity extends BaseActivity {
 
     private static final int GOTO_LOGIN = 100;
@@ -44,6 +45,7 @@ public class WelcomeActivity extends BaseActivity {
                 mHandler.sendEmptyMessageDelayed(GOTO_LOGIN, DURATION);
             }
         });
+
     }
 
     private static class MyHandler extends Handler {

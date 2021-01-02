@@ -1,11 +1,17 @@
 package com.example.java.ui.login;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.java.R;
 import com.example.java.db.repo.UserRepo;
 
 public class LoginViewModel extends ViewModel {
@@ -16,8 +22,11 @@ public class LoginViewModel extends ViewModel {
         this.userRepo = userRepo;
     }
 
-    public void login(String username, String password) {
+    public void login(Activity activity, String username, String password) {
+        if ("Admin".equals(username)) {
 
+
+        }
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
